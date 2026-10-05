@@ -1,0 +1,28 @@
+<main class="page">
+  <header class="page__header">
+    <span class="page__badge">GraphQL</span>
+    <h1>Query Builder</h1>
+    <p class="page__hint">
+      Point it at any GraphQL endpoint to load its schema, pick fields, and
+      generate a query or mutation. Try
+      <a href="https://countries.trevorblades.com/graphql" target="_blank" rel="noopener">Countries</a>
+      (queries) or
+      <a href="https://graphqlplaceholder.vercel.app/graphql" target="_blank" rel="noopener">GraphQLPlaceholder</a>
+      (queries and mutations).
+    </p>
+  </header>
+
+  <app-graphql-query-builder
+    [graphqlEndpointUrl]="demoEndpoint"
+    (submitted)="onSubmit($event)">
+  </app-graphql-query-builder>
+
+  <section *ngIf="lastSubmitted" class="page__submitted">
+    <h2>Last submitted payload</h2>
+    <pre>{{ lastSubmitted | json }}</pre>
+  </section>
+
+  <footer class="page__footer">
+    Built with Angular. Schema loaded via standard GraphQL introspection.
+  </footer>
+</main>
