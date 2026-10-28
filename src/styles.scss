@@ -9,6 +9,11 @@ body {
   margin: 0;
 }
 
+// Scale the whole UI with the viewport: 16px on laptops, up to 22px on large monitors.
+html {
+  font-size: clamp(16px, 0.55vw + 8px, 22px);
+}
+
 body {
   background: #f1f5f9;
   color: #0f172a;

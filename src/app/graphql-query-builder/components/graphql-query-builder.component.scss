@@ -19,7 +19,7 @@
   overflow: hidden;
   color: var(--gql-text);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 
   *,
   *::before,
@@ -85,11 +85,11 @@
     min-width: 0;
 
     &--url {
-      flex: 3 1 320px;
+      flex: 3 1 20rem;
     }
 
     &--headers {
-      flex: 2 1 240px;
+      flex: 2 1 15rem;
     }
   }
 
@@ -178,12 +178,11 @@
     flex: 1;
     min-height: 0;
     display: grid;
-    grid-template-columns: 260px minmax(300px, 0.8fr) minmax(420px, 1.4fr);
+    grid-template-columns: 16rem minmax(18rem, 0.8fr) minmax(26rem, 1.4fr);
     grid-template-rows: minmax(0, 1fr);
 
     @media (max-width: 900px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: none;
+      display: block;
       overflow: auto;
     }
   }
