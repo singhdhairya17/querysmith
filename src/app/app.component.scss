@@ -33,14 +33,26 @@
 
   &__brand {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.6rem;
     min-width: 0;
   }
 
   &__logo {
-    color: #e535ab;
-    font-size: 1rem;
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #e10098;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 1.1rem;
+    background: #334155;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
   }
 
   &__name {
