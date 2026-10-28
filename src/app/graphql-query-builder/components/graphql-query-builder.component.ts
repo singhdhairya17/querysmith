@@ -58,53 +58,46 @@ import { GraphqlFieldTreeComponent } from './graphql-field-tree.component';
   template: `
     <section class="gql-builder">
       <header class="gql-builder__header">
-        <div class="gql-builder__header-top">
-          <h2>GraphQL Query Builder</h2>
+        <div class="gql-builder__endpoint">
+          <div class="gql-builder__field gql-builder__field--url">
+            <label class="gql-builder__endpoint-label" for="gql-endpoint-url">
+              Endpoint
+            </label>
+            <input
+              id="gql-endpoint-url"
+              type="text"
+              class="gql-builder__endpoint-input"
+              [formControl]="endpointUrl"
+              placeholder="https://countries.trevorblades.com/graphql"
+              title="The schema loads automatically when the URL changes"
+              autocomplete="off"
+              spellcheck="false" />
+          </div>
+          <div class="gql-builder__field gql-builder__field--headers">
+            <label class="gql-builder__endpoint-label" for="gql-http-headers">
+              Headers <span class="gql-builder__optional">JSON, optional</span>
+            </label>
+            <textarea
+              id="gql-http-headers"
+              class="gql-builder__endpoint-headers"
+              rows="1"
+              [formControl]="httpHeadersJson"
+              placeholder='{"Authorization":"Bearer your-token"}'
+              title="Sent with every request, e.g. Authorization or an API key header"
+              autocomplete="off"
+              spellcheck="false"></textarea>
+          </div>
           <button
             type="button"
+            class="gql-builder__refresh"
             [disabled]="metadataLoading"
             (click)="refreshMetadata()">
-            Refresh schema
+            {{ metadataLoading ? 'Loading…' : 'Refresh schema' }}
           </button>
         </div>
-        <div class="gql-builder__endpoint">
-          <label class="gql-builder__endpoint-label" for="gql-endpoint-url">
-            GraphQL endpoint URL
-          </label>
-          <input
-            id="gql-endpoint-url"
-            type="text"
-            class="gql-builder__endpoint-input"
-            [formControl]="endpointUrl"
-            placeholder="https://countries.trevorblades.com/graphql"
-            autocomplete="off"
-            spellcheck="false" />
-          <p class="gql-builder__endpoint-hint">
-            The schema loads automatically when the URL changes, or click
-            Refresh schema.
-          </p>
-          <p *ngIf="metadataLoading" class="gql-builder__endpoint-loading">
-            Loading schema…
-          </p>
-          <p *ngIf="metadataError" class="gql-builder__endpoint-error">
-            {{ metadataError }}
-          </p>
-          <label class="gql-builder__endpoint-label" for="gql-http-headers">
-            HTTP headers (JSON, optional)
-          </label>
-          <textarea
-            id="gql-http-headers"
-            class="gql-builder__endpoint-headers"
-            rows="3"
-            [formControl]="httpHeadersJson"
-            placeholder='{"Authorization":"Bearer your-token"}'
-            autocomplete="off"
-            spellcheck="false"></textarea>
-          <p class="gql-builder__endpoint-hint">
-            Sent with every request, e.g. <code>Authorization</code> or an API
-            key header.
-          </p>
-        </div>
+        <p *ngIf="metadataError" class="gql-builder__endpoint-error">
+          {{ metadataError }}
+        </p>
       </header>
 
       <div class="gql-builder__panels">
@@ -191,9 +184,9 @@ import { GraphqlFieldTreeComponent } from './graphql-field-tree.component';
             autocomplete="off"
             spellcheck="false"></textarea>
           <p class="gql-builder__endpoint-hint">
-            Keys match variable names without the <code>$</code> (e.g.
-            <code>$input</code> → <code>"input"</code>). Only used when an
-            argument references a variable; inline values ignore this box.
+            Use variable names without the <code>$</code> as keys, e.g.
+            <code>"input"</code> for <code>$input</code>. Applies only to
+            arguments that reference a variable.
           </p>
 
           <div class="gql-builder__actions">

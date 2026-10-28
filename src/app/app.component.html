@@ -1,28 +1,27 @@
-<main class="page">
-  <header class="page__header">
-    <span class="page__badge">GraphQL</span>
-    <h1>Query Builder</h1>
-    <p class="page__hint">
-      Point it at any GraphQL endpoint to load its schema, pick fields, and
-      generate a query or mutation. Try
-      <a href="https://countries.trevorblades.com/graphql" target="_blank" rel="noopener">Countries</a>
-      (queries) or
-      <a href="https://graphqlplaceholder.vercel.app/graphql" target="_blank" rel="noopener">GraphQLPlaceholder</a>
-      (queries and mutations).
-    </p>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__logo" aria-hidden="true">◆</span>
+      <span class="topbar__name">querysmith</span>
+      <span class="topbar__tagline">Visual GraphQL query builder</span>
+    </div>
+    <nav class="topbar__links">
+      <a class="topbar__github" href="https://github.com/singhdhairya17/querysmith" target="_blank" rel="noopener">GitHub</a>
+    </nav>
   </header>
 
-  <app-graphql-query-builder
-    [graphqlEndpointUrl]="demoEndpoint"
-    (submitted)="onSubmit($event)">
-  </app-graphql-query-builder>
+  <main class="app__main">
+    <app-graphql-query-builder
+      [graphqlEndpointUrl]="demoEndpoint"
+      (submitted)="onSubmit($event)">
+    </app-graphql-query-builder>
+  </main>
 
-  <section *ngIf="lastSubmitted" class="page__submitted">
-    <h2>Last submitted payload</h2>
+  <section *ngIf="lastSubmitted" class="payload">
+    <div class="payload__bar">
+      <h2>Submitted payload</h2>
+      <button type="button" (click)="lastSubmitted = null">Close</button>
+    </div>
     <pre>{{ lastSubmitted | json }}</pre>
   </section>
-
-  <footer class="page__footer">
-    Built with Angular. Schema loaded via standard GraphQL introspection.
-  </footer>
-</main>
+</div>
